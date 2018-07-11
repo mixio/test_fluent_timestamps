@@ -15,6 +15,7 @@ final class UsersController: RouteCollection {
         usersRoutes.get(User.parameter, use: getHandler)
         usersRoutes.delete(User.parameter, use: deleteHandler)
         usersRoutes.put(User.parameter, use: updateHandler)
+        usersRoutes.post(User.parameter, use: updateByPostHandler)
     }
 
     func getAllHandler(_ req: Request) throws -> Future<[User]> {
@@ -43,4 +44,12 @@ final class UsersController: RouteCollection {
             return user.save(on: req)
         }
     }
+
+    func updateByPostHandler(_ req: Request) throws -> Future<User> {
+        return try flatMap(to: User.self, req.parameters.next(User.self), req.content.decode(User.self)) { user, updatedUser in
+            user.name = updatedUser.name
+            return user.save(on: req)
+        }
+    }
+
 }
