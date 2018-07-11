@@ -1,15 +1,36 @@
-# Vapor Clean
+# Test Fluent Timestamps
 
-This is a template for Vapor 3 users that does the absolute minimum to set up a working Vapor 3 environment.
+## Purpose
 
-Unlike the official templates that are currently available, this template does not include vast swathes of extra example code that you will always need to delete. Instead, it adds just a single “hello” route so you can be sure everything is working correctly.
+This is a test project to test issue :
 
-Although this repository contains a LICENSE file, this is meant for you to replace with whatever license you intend to use – please consider what little code is in this repository as public domain, and yours to do with as you please.
+https://github.com/vapor/fluent/issues/539
 
-It’s my hope that the official Vapor project will add a template similar to this one at some point in the future, but until then please use this however you want.
 
-## Try it out
+## Conclusion
 
-If you have already installed the Vapor toolbox, you can create a new Vapor project from this repo using the following command:
+The reported issue could not be reproduced by this project.
 
-    vapor new MyProject --template=twostraws/vapor-clean
+## Howto
+
+- clone the repo in some new directory:<br/>
+    ```
+
+    $ cd <path to your projects directory>
+    $ git clone https://github.com/mixio/test_fluent_timestamps.git
+    $ cd test_fluent_timestamps
+    ```
+- update the project:<br/>
+    ```
+    $ vapor update -y
+    ```
+- run the tests:<br/><br/>
+    - with Xcode:<br/><br/>
+    Launch the project, go to the Test Navigatore, enable "AppTests" and run the tests.<br/><br/>
+    - with vapor:<br/><br/>
+    ```$ vapor test```<br/><br/>
+    - with swift (more verbose):<br/><br/>
+     ```$ swift test```<br/><br/>
+
+
+Running the `testUpdateUserWithTheAPI()` test should produce the expected result.
