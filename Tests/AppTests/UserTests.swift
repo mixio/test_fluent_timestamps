@@ -73,7 +73,7 @@ final class UserTests: XCTestCase {
         XCTAssertEqual(receivedUser.id, user.id)
     }
 
-    func testUpdateUserWithTheAPI() throws {
+    func testUpdateUserbyPutWithTheAPI() throws {
         let user = try User.create(name: userName, on: conn)
         let updatedName = "\(user.name) UPDATED"
         user.name = updatedName
@@ -89,11 +89,28 @@ final class UserTests: XCTestCase {
 
     }
 
+    func testUpdateUserByPostWithTheAPI() throws {
+        let user = try User.create(name: userName, on: conn)
+        let updatedName = "\(user.name) UPDATED"
+        user.name = updatedName
+        Thread.sleep(forTimeInterval: 2) // Sleep for 2 seconds before updating.
+        let updatedUser = try app.getResponse(to: "\(usersURI)\(user.id!)", method: .POST, headers: ["Content-Type": "application/json"], data: user, decodeTo: User.self, loggedInRequest: true)
+
+        XCTAssertEqual(updatedUser.name, updatedName)
+        XCTAssertEqual(updatedUser.id, user.id)
+        XCTAssertNotNil(updatedUser.createdAt)
+        XCTAssertNotNil(updatedUser.updatedAt)
+        XCTAssertNotEqual("\(updatedUser.createdAt!)", "\(updatedUser.updatedAt!)")
+        print("ℹ️ createdAt:\(updatedUser.createdAt!), updatedAt:\(updatedUser.updatedAt!)")
+
+    }
+
     static let allTests = [
         ("testUsersCanBeRetrievedFromAPI", testUsersCanBeRetrievedFromAPI),
         ("testUserCanBeSavedWithAPI", testUserCanBeSavedWithAPI),
         ("testGettingASingleUserFromTheAPI", testGettingASingleUserFromTheAPI),
-        ("testUpdateUserWithTheAPI", testUpdateUserWithTheAPI),
+        ("testUpdateUserbyPutWithTheAPI", testUpdateUserbyPutWithTheAPI),
+        ("testUpdateUserByPostWithTheAPI", testUpdateUserByPostWithTheAPI),
     ]
 
 }
