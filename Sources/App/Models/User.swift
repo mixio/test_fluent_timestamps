@@ -14,6 +14,7 @@ final class User: PostgreSQLUUIDModel {
 
     var id: UUID?
     var name: String
+    var age: UInt?
     var createdAt: Date?
     var updatedAt: Date?
     init(name: String) {
@@ -32,3 +33,17 @@ extension User: Migration {
     }
 }
 
+extension User: CustomStringConvertible {
+    var description: String {
+        return """
+            user {
+                fluentID: '\(String(describing: fluentID))',
+                id: '\(String(describing: id))',
+                name: '\(name)',
+                age: '\(String(describing: age))',
+                createdAt: '\(String(describing: createdAt))',
+                updatedAt: '\(String(describing: updatedAt))'
+            }
+            """
+    }
+}

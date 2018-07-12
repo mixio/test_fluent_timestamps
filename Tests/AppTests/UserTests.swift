@@ -2,6 +2,7 @@
 import Vapor
 import XCTest
 import FluentPostgreSQL
+import JJTools
 
 final class UserTests: XCTestCase {
 
@@ -85,7 +86,7 @@ final class UserTests: XCTestCase {
         XCTAssertNotNil(updatedUser.createdAt)
         XCTAssertNotNil(updatedUser.updatedAt)
         XCTAssertNotEqual("\(updatedUser.createdAt!)", "\(updatedUser.updatedAt!)")
-        print("ℹ️ createdAt:\(updatedUser.createdAt!), updatedAt:\(updatedUser.updatedAt!)")
+        jjprint("ℹ️ createdAt:\(updatedUser.createdAt!), updatedAt:\(updatedUser.updatedAt!)")
 
     }
 
@@ -101,7 +102,7 @@ final class UserTests: XCTestCase {
         XCTAssertNotNil(updatedUser.createdAt)
         XCTAssertNotNil(updatedUser.updatedAt)
         XCTAssertNotEqual("\(updatedUser.createdAt!)", "\(updatedUser.updatedAt!)")
-        print("ℹ️ createdAt:\(updatedUser.createdAt!), updatedAt:\(updatedUser.updatedAt!)")
+        jjprint("ℹ️ createdAt:\(updatedUser.createdAt!), updatedAt:\(updatedUser.updatedAt!)")
 
     }
 

@@ -2,6 +2,7 @@ import App
 import Service
 import Vapor
 import Foundation
+import JJTools
 
 // The contents of main are wrapped in a do/catch block because any errors that get raised to the top level will crash Xcode
 do {
@@ -21,6 +22,6 @@ do {
     
     try app.run()
 } catch {
-    print(error)
+    jjprint(error)
     exit(1)
 }

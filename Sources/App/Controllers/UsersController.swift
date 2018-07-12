@@ -6,6 +6,7 @@
 //
 
 import Vapor
+import JJTools
 
 final class UsersController: RouteCollection {
     func boot(router: Router) throws {
@@ -24,6 +25,7 @@ final class UsersController: RouteCollection {
 
     func createHandler(_ req: Request) throws -> Future<User> {
         return try req.content.decode(User.self).flatMap { user in
+            jjprint(user)
             return user.save(on: req)
         }
     }
