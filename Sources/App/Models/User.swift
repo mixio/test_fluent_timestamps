@@ -17,8 +17,9 @@ final class User: PostgreSQLUUIDModel {
     var age: UInt?
     var createdAt: Date?
     var updatedAt: Date?
-    init(name: String) {
+    init(name: String, age: UInt? = nil) {
         self.name = name
+        self.age = age
     }
 }
 
