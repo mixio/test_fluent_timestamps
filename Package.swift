@@ -8,7 +8,7 @@ let package = Package(
         .package(url: "https://github.com/vapor/vapor.git", from: "3.0.0-rc"),
         .package(url: "https://github.com/vapor/fluent-postgresql.git", from: "1.0.0-rc"),
         //.package(url: "https://github.com/mixio/jjtools.git", from: "0.0.1"),
-        .package(url: "/Users/jj/Developer/mixio-git-forks/jjtools-mixio.git", from:"0.0.3")
+        .package(url: "/Users/jj/Developer/mixio-git-forks/jjtools-mixio.git", from:"0.0.6")
     ],
     targets: [
         .target(name: "App", dependencies: ["Vapor", "FluentPostgreSQL", "JJTools"]),

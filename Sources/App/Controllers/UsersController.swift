@@ -17,6 +17,8 @@ final class UsersController: RouteCollection {
         usersRoutes.delete(User.parameter, use: deleteHandler)
         usersRoutes.put(User.parameter, use: updateHandler)
         usersRoutes.post(User.parameter, use: updateByPostHandler)
+        usersRoutes.patch(use: patchHandler)
+        usersRoutes.patch(User.Patch.parameter, use: updateByPatchHandler)
     }
 
     func getAllHandler(_ req: Request) throws -> Future<[User]> {
@@ -53,5 +55,20 @@ final class UsersController: RouteCollection {
             return user.save(on: req)
         }
     }
+
+    func patchHandler(_ req: Request) throws -> Future<User.Patch> {
+        return try req.content.decode(User.Patch.self).flatMap { user in
+            jjprint(user)
+            return user.save(on: req)
+        }
+    }
+
+    func updateByPatchHandler(_ req: Request) throws -> Future<User.Patch> {
+        return try req.parameters.next(User.Patch.self).flatMap { user in
+            jjprint("user: \(user)")
+            return user.save(on: req)
+        }
+    }
+
 
 }

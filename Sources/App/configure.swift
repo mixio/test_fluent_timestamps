@@ -49,4 +49,7 @@ public func configure(
     var migrations = MigrationConfig()
     migrations.add(model: User.self, database: .psql)
     services.register(migrations)
+
+    User.Patch.defaultDatabase = .psql
+
 }

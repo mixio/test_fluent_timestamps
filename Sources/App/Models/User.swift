@@ -21,6 +21,15 @@ final class User: PostgreSQLUUIDModel {
         self.name = name
         self.age = age
     }
+
+    struct Patch: Codable, Content, PostgreSQLUUIDModel, Parameter {
+        static let entity = "User"
+        static var sqlTableIdentifierString = entity
+
+        var id: UUID?
+        var name: String
+    }
+
 }
 
 extension User: Content { }
